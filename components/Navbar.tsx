@@ -6,7 +6,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import HamX from "./HamX";
 import { useAppContext } from "@/context/AppContext";
-import { signOut } from "@/utils/actions/userAuth.action";
+import { signOut } from "@/lib/actions/userAuth.action";
 import { useRouter } from "next/navigation";
 
 export const Navbar = () => {

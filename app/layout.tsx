@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
+import { AppContextProvider } from "@/context/AppContext";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
-const outfit = Outfit({
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-});
+
+const outfit = Outfit({ subsets: ["latin"], weight: ["300", "400", "500"] });
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -26,11 +26,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${outfit.className} h-full antialiased text-gray-700`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${outfit.className}antialiased text-gray-700`}
+      >
+        <AppContextProvider>
+          <Toaster />
+          {children}
+        </AppContextProvider>
+      </body>
     </html>
   );
 }
